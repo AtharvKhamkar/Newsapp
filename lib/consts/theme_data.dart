@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
+import 'global_colors.dart';
 
-class Style {
+class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
       scaffoldBackgroundColor:
-          isDarkTheme ? Color(0xFF00001a) : const Color(0xFFFFFFFF),
-      primaryColor: Colors.blue,
-      colorScheme: ThemeData().colorScheme.copyWith(
-            secondary:
-                isDarkTheme ? const Color(0x0ff1af3c) : const Color(0xFFE8FDFD),
-            brightness: isDarkTheme ? Brightness.dark : Brightness.light,
+          isDarkTheme ? darkScaffoldColor : lightScaffoldColor,
+      primaryColor: isDarkTheme ? darkCardColor : lightCardColor,
+      backgroundColor: isDarkTheme ? darkBackgroundColor : lightBackgroundColor,
+      hintColor: isDarkTheme ? Colors.grey.shade400 : Colors.grey.shade700,
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: isDarkTheme ? Colors.white : Colors.black,
+        selectionColor: Colors.blue,
+
+        // selectionHandleColor: Colors.blue,
+      ),
+      textTheme: Theme.of(context).textTheme.apply(
+            bodyColor: isDarkTheme ? Colors.white : Colors.black,
+            displayColor: isDarkTheme ? Colors.white : Colors.black,
           ),
-      cardColor: isDarkTheme ? const Color(0xFF0a0d2c) : const Color(0xFFF2FDFD),
-      canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
-      buttonTheme: Theme.of(context).buttonTheme.copyWith(
-            colorScheme: isDarkTheme
-                ? const ColorScheme.dark()
-                : const ColorScheme.light(),
+      cardColor: isDarkTheme ? darkCardColor : lightCardColor,
+      brightness: isDarkTheme ? Brightness.dark : Brightness.light,
+      colorScheme: ThemeData().colorScheme.copyWith(
+            secondary: isDarkTheme ? darkIconsColor : lightIconsColor,
+            brightness: isDarkTheme ? Brightness.dark : Brightness.light,
           ),
     );
   }
