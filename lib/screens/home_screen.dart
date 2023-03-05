@@ -5,6 +5,7 @@ import 'package:newsapp/consts/vars.dart';
 import 'package:newsapp/provider/dark_theme_provider.dart';
 import 'package:newsapp/widgets/drawer_widget.dart';
 import 'package:newsapp/widgets/tabs.dart';
+import 'package:newsapp/widgets/vertical_spacing.dart';
 import 'package:provider/provider.dart';
 import 'package:newsapp/services/utils.dart';
 
@@ -44,10 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         drawer: const DrawerWidget(),
-        body: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(children: [
+            Row(
               children: [
                 TabsWidget(
                     text: "All news",
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     },
                     fontSize: newsType == NewsType.allNews ? 22 : 14),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 TabsWidget(
@@ -82,9 +83,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: newsType == NewsType.topTreanding ? 22 : 14)
               ],
             ),
-          )
-        ]),
+            const VerticalSpacing(10),
+            newsType == NewsType.topTreanding
+                ? Container()
+                : SizedBox(
+                    height: kBottomNavigationBarHeight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        PaginationButtons(function: () {}, text: "Prev"),
+                        PaginationButtons(function: () {}, text: "Next")
+                      ],
+                    ),
+                  )
+          ]),
+        ),
       ),
+    );
+  }
+
+  Widget PaginationButtons({required Function function, required String text}) {
+    return ElevatedButton(
+      onPressed: () {
+        function();
+      },
+      child: Text(text),
+      style: ElevatedButton.styleFrom(
+          primary: Colors.blue,
+          padding: const EdgeInsets.all(6),
+          textStyle:
+              const TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
     );
   }
 }
