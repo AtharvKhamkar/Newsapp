@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var newsType = NewsType.allNews;
   int currentPageIndex = 0;
+  String sortBy = SortByEnum.publishedAt.name;
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<DarkThemeProvider>(context);
@@ -143,11 +144,45 @@ class _HomeScreenState extends State<HomeScreen> {
                             text: "Next")
                       ],
                     ),
+                  ),
+            VerticalSpacing(10),
+            newsType == NewsType.topTreanding
+                ? Container()
+                : Align(
+                    alignment: Alignment.topRight,
+                    child: Material(
+                      color: Theme.of(context).cardColor,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: DropdownButton(
+                            value: sortBy,
+                            items: dropDownItems,
+                            onChanged: (String? value) {}),
+                      ),
+                    ),
                   )
           ]),
         ),
       ),
     );
+  }
+
+  List<DropdownMenuItem<String>> get dropDownItems {
+    List<DropdownMenuItem<String>> menuItem = [
+      DropdownMenuItem(
+        value: SortByEnum.relvancy.name,
+        child: Text(SortByEnum.relvancy.name),
+      ),
+      DropdownMenuItem(
+        value: SortByEnum.publishedAt.name,
+        child: Text(SortByEnum.publishedAt.name),
+      ),
+      DropdownMenuItem(
+        value: SortByEnum.popularity.name,
+        child: Text(SortByEnum.popularity.name),
+      )
+    ];
+    return menuItem;
   }
 
   Widget PaginationButtons({required Function function, required String text}) {
