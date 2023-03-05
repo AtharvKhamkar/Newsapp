@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsapp/consts/vars.dart';
 import 'package:newsapp/provider/dark_theme_provider.dart';
+import 'package:newsapp/widgets/articles_widget.dart';
 import 'package:newsapp/widgets/drawer_widget.dart';
 import 'package:newsapp/widgets/tabs.dart';
 import 'package:newsapp/widgets/vertical_spacing.dart';
@@ -160,7 +161,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             onChanged: (String? value) {}),
                       ),
                     ),
-                  )
+                  ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 20,
+                itemBuilder: (ctx, index) {
+                  return ArticleWidget();
+                },
+              ),
+            )
           ]),
         ),
       ),
