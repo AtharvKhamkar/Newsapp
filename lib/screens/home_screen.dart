@@ -176,8 +176,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             if (newsType == NewsType.topTreanding)
               SizedBox(
-                height: size.height * 0.60,
+                height: size.height * 0.45,
                 child: Swiper(
+                  autoplay: true,
+                  autoplayDelay: 8000,
+                  itemWidth: size.width * 0.9,
+                  layout: SwiperLayout.STACK,
+                  viewportFraction: 0.9,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return TopTrendingWidget();
