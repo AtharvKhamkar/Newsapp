@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  card_swiper: ^2.0.4
   cupertino_icons: ^1.0.5
   fancy_shimmer_image: ^2.0.2
   flutter:
@@ -36,6 +37,7 @@ dependencies:
   google_fonts: ^4.0.3
   provider: ^6.0.5
   shared_preferences: ^2.0.18
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

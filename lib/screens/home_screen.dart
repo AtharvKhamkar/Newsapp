@@ -1,3 +1,4 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +6,9 @@ import 'package:newsapp/consts/vars.dart';
 import 'package:newsapp/provider/dark_theme_provider.dart';
 import 'package:newsapp/widgets/articles_widget.dart';
 import 'package:newsapp/widgets/drawer_widget.dart';
+import 'package:newsapp/widgets/loading_widget.dart';
 import 'package:newsapp/widgets/tabs.dart';
+import 'package:newsapp/widgets/top_trending.dart';
 import 'package:newsapp/widgets/vertical_spacing.dart';
 import 'package:provider/provider.dart';
 import 'package:newsapp/services/utils.dart';
@@ -23,8 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   String sortBy = SortByEnum.publishedAt.name;
   @override
   Widget build(BuildContext context) {
+    Size size = Utils(context).getScreenSize;
     final themeProvider = Provider.of<DarkThemeProvider>(context);
-    final Color color = utils(context).getColor;
+    final Color color = Utils(context).getColor;
 
     return SafeArea(
       child: Scaffold(
@@ -146,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-            VerticalSpacing(10),
+            const VerticalSpacing(10),
             newsType == NewsType.topTreanding
                 ? Container()
                 : Align(
@@ -162,14 +166,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 20,
-                itemBuilder: (ctx, index) {
-                  return ArticleWidget();
-                },
+            if (newsType == NewsType.allNews)
+              Expanded(
+                child: ListView.builder(
+                    itemCount: 20,
+                    itemBuilder: (ctx, index) {
+                      return const ArticleWidget();
+                    }),
               ),
-            )
+            if (newsType == NewsType.topTreanding)
+              SizedBox(
+                height: size.height * 0.60,
+                child: Swiper(
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return TopTrendingWidget();
+                  },
+                ),
+              )
           ]),
         ),
       ),

@@ -11,7 +11,7 @@ class ArticleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = utils(context).getScreenSize;
+    Size size = Utils(context).getScreenSize;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -58,6 +58,8 @@ class ArticleWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Title ' * 100,
+                          textAlign: TextAlign.justify,
+
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: smallTextStyle),

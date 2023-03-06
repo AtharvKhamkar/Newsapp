@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  card_swiper:
+    dependency: "direct main"
+    description:
+      name: card_swiper
+      sha256: "0c94c538f47be1dab52d018d4900a7046b4cb0700dc7f95b8628da89d1212b35"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
   characters:
     dependency: transitive
     description:
@@ -401,7 +409,7 @@ packages:
     source: hosted
     version: "2.1.4"
   shimmer:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shimmer
       sha256: "1f1009b5845a1f88f1c5630212279540486f97409e9fc3f63883e71070d107bf"
