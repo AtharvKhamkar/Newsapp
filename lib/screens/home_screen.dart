@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsapp/consts/vars.dart';
+import 'package:newsapp/inner_screens/search_screen.dart';
 import 'package:newsapp/provider/dark_theme_provider.dart';
 import 'package:newsapp/widgets/articles_widget.dart';
 import 'package:newsapp/widgets/drawer_widget.dart';
@@ -10,6 +11,7 @@ import 'package:newsapp/widgets/loading_widget.dart';
 import 'package:newsapp/widgets/tabs.dart';
 import 'package:newsapp/widgets/top_trending.dart';
 import 'package:newsapp/widgets/vertical_spacing.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:newsapp/services/utils.dart';
 
@@ -46,7 +48,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: SearchScreen(),
+                        inheritTheme: true,
+                        ctx: context));
+              },
               icon: const Icon(IconlyLight.search),
             )
           ],
