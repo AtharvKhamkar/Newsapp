@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 enum NewsType {
-  topTreanding,
+  Entertainment,
   topTrending,
-  allNews,
+  Business,
+  General
 }
 
 enum SortByEnum {
