@@ -5,7 +5,13 @@ enum NewsType {
   Entertainment,
   topTrending,
   Business,
-  General
+  General,
+  Health,
+  Science,
+  Sport,
+  Technology
+  
+
 }
 
 enum SortByEnum {

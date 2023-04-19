@@ -6,6 +6,10 @@ import 'package:newsapp/consts/vars.dart';
 import 'package:newsapp/inner_screens/search_screen.dart';
 import 'package:newsapp/models/businessModel.dart';
 import 'package:newsapp/models/generalModel.dart';
+import 'package:newsapp/models/healthModel.dart';
+import 'package:newsapp/models/scienceModel.dart';
+import 'package:newsapp/models/sportModel.dart';
+import 'package:newsapp/models/technologyModel.dart';
 import 'package:newsapp/provider/dark_theme_provider.dart';
 import 'package:newsapp/services/states_services.dart';
 import 'package:newsapp/widgets/articles_widget.dart';
@@ -72,55 +76,113 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
-            Row(
-              children: [
-                TabsWidget(
-                    text: "Business",
-                    color: newsType == NewsType.Business
-                        ? Theme.of(context).cardColor
-                        : Colors.transparent,
-                    function: () {
-                      if (newsType == NewsType.Business) {
-                        return;
-                      }
-                      setState(() {
-                        newsType = NewsType.Business;
-                      });
-                    },
-                    fontSize: newsType == NewsType.Business ? 22 : 14),
-                const SizedBox(
-                  width: 25,
-                ),
-                TabsWidget(
-                    text: "Entertainment",
-                    color: newsType == NewsType.Entertainment
-                        ? Theme.of(context).cardColor
-                        : Colors.transparent,
-                    function: () {
-                      if (newsType == NewsType.Entertainment) {
-                        return;
-                      }
-                      setState(() {
-                        newsType = NewsType.Entertainment;
-                      });
-                    },
-                    fontSize: newsType == NewsType.Entertainment ? 22 : 14),
-                TabsWidget(
-                    text: "General",
-                    color: newsType == NewsType.General
-                        ? Theme.of(context).cardColor
-                        : Colors.transparent,
-                    function: () {
-                      
-                      if (newsType == NewsType.General) {
-                        return;
-                      }
-                      setState(() {
-                        newsType = NewsType.General;
-                      });
-                    },
-                    fontSize: newsType == NewsType.General ? 22 : 14)
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  TabsWidget(
+                      text: "Business",
+                      color: newsType == NewsType.Business
+                          ? Theme.of(context).cardColor
+                          : Colors.transparent,
+                      function: () {
+                        if (newsType == NewsType.Business) {
+                          return;
+                        }
+                        setState(() {
+                          newsType = NewsType.Business;
+                        });
+                      },
+                      fontSize: newsType == NewsType.Business ? 22 : 14),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  TabsWidget(
+                      text: "Entertainment",
+                      color: newsType == NewsType.Entertainment
+                          ? Theme.of(context).cardColor
+                          : Colors.transparent,
+                      function: () {
+                        if (newsType == NewsType.Entertainment) {
+                          return;
+                        }
+                        setState(() {
+                          newsType = NewsType.Entertainment;
+                        });
+                      },
+                      fontSize: newsType == NewsType.Entertainment ? 22 : 14),
+                  TabsWidget(
+                      text: "General",
+                      color: newsType == NewsType.General
+                          ? Theme.of(context).cardColor
+                          : Colors.transparent,
+                      function: () {
+                        if (newsType == NewsType.General) {
+                          return;
+                        }
+                        setState(() {
+                          newsType = NewsType.General;
+                        });
+                      },
+                      fontSize: newsType == NewsType.General ? 22 : 14),
+                  TabsWidget(
+                      text: "Health",
+                      color: newsType == NewsType.Health
+                          ? Theme.of(context).cardColor
+                          : Colors.transparent,
+                      function: () {
+                        if (newsType == NewsType.Health) {
+                          return;
+                        }
+                        setState(() {
+                          newsType = NewsType.Health;
+                        });
+                      },
+                      fontSize: newsType == NewsType.Health ? 22 : 14),
+                  TabsWidget(
+                      text: "Science",
+                      color: newsType == NewsType.Science
+                          ? Theme.of(context).cardColor
+                          : Colors.transparent,
+                      function: () {
+                        if (newsType == NewsType.Science) {
+                          return;
+                        }
+                        setState(() {
+                          newsType = NewsType.Science;
+                        });
+                      },
+                      fontSize: newsType == NewsType.Science ? 22 : 14),
+                  TabsWidget(
+                      text: "Sports",
+                      color: newsType == NewsType.Sport
+                          ? Theme.of(context).cardColor
+                          : Colors.transparent,
+                      function: () {
+                        if (newsType == NewsType.Sport) {
+                          return;
+                        }
+                        setState(() {
+                          newsType = NewsType.Sport;
+                        });
+                      },
+                      fontSize: newsType == NewsType.Sport ? 22 : 14),
+                  TabsWidget(
+                      text: "Technology",
+                      color: newsType == NewsType.Technology
+                          ? Theme.of(context).cardColor
+                          : Colors.transparent,
+                      function: () {
+                        if (newsType == NewsType.Technology) {
+                          return;
+                        }
+                        setState(() {
+                          newsType = NewsType.Technology;
+                        });
+                      },
+                      fontSize: newsType == NewsType.Technology ? 22 : 14)
+                ],
+              ),
             ),
             const VerticalSpacing(10),
             SizedBox(
@@ -306,6 +368,218 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: FutureBuilder(
                   future: statesServices.fetchGeneralNews(),
                   builder: (context, AsyncSnapshot<generalModel> snapshot) {
+                    if (!snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return Shimmer.fromColors(
+                              baseColor: Colors.grey.shade700,
+                              highlightColor: Colors.grey.shade100,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    title: Container(
+                                        height: 10,
+                                        width: 90,
+                                        color: Colors.white),
+                                    subtitle: Container(
+                                        height: 10,
+                                        width: 20,
+                                        color: Colors.white),
+                                    leading: Container(
+                                        height: 50,
+                                        width: 50,
+                                        color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            );
+                          });
+                    } else {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.totalResults,
+                          itemBuilder: (context, index) {
+                            return ArticleWidget(
+                              imageUrl: snapshot
+                                  .data!.articles![index].urlToImage
+                                  .toString(),
+                              title: snapshot.data!.articles![index].title
+                                  .toString(),
+                              publishedAt: snapshot
+                                  .data!.articles![index].publishedAt
+                                  .toString(),
+                              url: snapshot.data!.articles![index].url
+                                  .toString(),
+                            );
+                          });
+                    }
+                  },
+                ),
+              ),
+            if (newsType == NewsType.Health)
+              Expanded(
+                child: FutureBuilder(
+                  future: statesServices.fetchHealthNews(),
+                  builder: (context, AsyncSnapshot<healthModel> snapshot) {
+                    if (!snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return Shimmer.fromColors(
+                              baseColor: Colors.grey.shade700,
+                              highlightColor: Colors.grey.shade100,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    title: Container(
+                                        height: 10,
+                                        width: 90,
+                                        color: Colors.white),
+                                    subtitle: Container(
+                                        height: 10,
+                                        width: 20,
+                                        color: Colors.white),
+                                    leading: Container(
+                                        height: 50,
+                                        width: 50,
+                                        color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            );
+                          });
+                    } else {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.totalResults,
+                          itemBuilder: (context, index) {
+                            return ArticleWidget(
+                              imageUrl: snapshot
+                                  .data!.articles![index].urlToImage
+                                  .toString(),
+                              title: snapshot.data!.articles![index].title
+                                  .toString(),
+                              publishedAt: snapshot
+                                  .data!.articles![index].publishedAt
+                                  .toString(),
+                              url: snapshot.data!.articles![index].url
+                                  .toString(),
+                            );
+                          });
+                    }
+                  },
+                ),
+              ),
+            if (newsType == NewsType.Science)
+              Expanded(
+                child: FutureBuilder(
+                  future: statesServices.fetchScienceNews(),
+                  builder: (context, AsyncSnapshot<scienceModel> snapshot) {
+                    if (!snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return Shimmer.fromColors(
+                              baseColor: Colors.grey.shade700,
+                              highlightColor: Colors.grey.shade100,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    title: Container(
+                                        height: 10,
+                                        width: 90,
+                                        color: Colors.white),
+                                    subtitle: Container(
+                                        height: 10,
+                                        width: 20,
+                                        color: Colors.white),
+                                    leading: Container(
+                                        height: 50,
+                                        width: 50,
+                                        color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            );
+                          });
+                    } else {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.totalResults,
+                          itemBuilder: (context, index) {
+                            return ArticleWidget(
+                              imageUrl: snapshot
+                                  .data!.articles![index].urlToImage
+                                  .toString(),
+                              title: snapshot.data!.articles![index].title
+                                  .toString(),
+                              publishedAt: snapshot
+                                  .data!.articles![index].publishedAt
+                                  .toString(),
+                              url: snapshot.data!.articles![index].url
+                                  .toString(),
+                            );
+                          });
+                    }
+                  },
+                ),
+              ),
+            if (newsType == NewsType.Sport)
+              Expanded(
+                child: FutureBuilder(
+                  future: statesServices.fetchSportNews(),
+                  builder: (context, AsyncSnapshot<sportModel> snapshot) {
+                    if (!snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return Shimmer.fromColors(
+                              baseColor: Colors.grey.shade700,
+                              highlightColor: Colors.grey.shade100,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    title: Container(
+                                        height: 10,
+                                        width: 90,
+                                        color: Colors.white),
+                                    subtitle: Container(
+                                        height: 10,
+                                        width: 20,
+                                        color: Colors.white),
+                                    leading: Container(
+                                        height: 50,
+                                        width: 50,
+                                        color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            );
+                          });
+                    } else {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.totalResults,
+                          itemBuilder: (context, index) {
+                            return ArticleWidget(
+                              imageUrl: snapshot
+                                  .data!.articles![index].urlToImage
+                                  .toString(),
+                              title: snapshot.data!.articles![index].title
+                                  .toString(),
+                              publishedAt: snapshot
+                                  .data!.articles![index].publishedAt
+                                  .toString(),
+                              url: snapshot.data!.articles![index].url
+                                  .toString(),
+                            );
+                          });
+                    }
+                  },
+                ),
+              ),
+            if (newsType == NewsType.Technology)
+              Expanded(
+                child: FutureBuilder(
+                  future: statesServices.fetchTechnologyNews(),
+                  builder: (context, AsyncSnapshot<technologyModel> snapshot) {
                     if (!snapshot.hasData) {
                       return ListView.builder(
                           itemCount: 4,
